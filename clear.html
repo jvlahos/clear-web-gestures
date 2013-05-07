@@ -1,0 +1,52 @@
+
+<html>
+<head>
+	<title>Clear for Web</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="stylesheet" href="clear.css"/>
+</head>
+
+<body>
+	<div class="mod">
+		<div class="item-mod">
+			<div class="item">
+				<input type="text" value="Do first item."/>
+			</div>
+		</div>
+		<div class="item-mod">
+			<div class="item">
+				<input type="text" value="Do second item."/>
+			</div>
+		</div>
+		<div class="item-mod">
+			<div class="item">
+				<input type="text" value="Do third item."/>
+			</div>
+		</div>
+		<div class="item-mod">
+			<div class="item">
+				<input type="text" value="Do fourth item."/>
+			</div>
+		</div>
+		<div id="spacer"></div>
+	</div><!--eo mod-->
+
+	<!--Space for triggering new item-->
+	<div id="new-item-trigger"></div>
+
+	<!--Item template for spawning new item-->
+	<div id="item-mod-template">
+		<div class="item-mod new">
+			<div class="item">
+				<input type="text" value=""/>
+			</div>
+		</div>
+	</div>
+
+	<!--Scripts-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="clear.js"></script>
+
+</body>
+</html>
