@@ -13,22 +13,45 @@ $(document).ready(function(){
 	var afterCount, beforeCount, releasePoint;
 	var spacer = $('#spacer');
 
+	// $(document).hammer({drag_min_distance: 0}).on('drag dragend', '.mod', function(event){
+	// 	console.log(event);
+	// 	if (event.type == "drag" && $(window).scrollTop() == 0) {
+	// 		//$('.mod').css('margin-top',event.gesture.deltaY+"px");
+	// 		$('#new-item-top').css('height', event.gesture.deltaY+"px");
+	// 	} else {
+	// 		$('.mod').addClass('slide-back').css('margin-top', '0px');
+	// 		setTimeout(function() {
+	// 			$('.mod').removeClass('slide-back');
+	// 		}, 200);
+	// 	}
+	// 	$('#new-item-top').css('-webkit-transform', 'rotateX('+(90-(((event.gesture.deltaY)/67)*90))+'deg)');
+	// });
+
+
 	//When any item is touched and being moved
 	//Runs every pixel
-	$(document).on('touchmove', '.item-mod', function(){
+	$('.mod').not('.focus').hammer({drag_block_vertical: true}).on('drag', '.item-mod', function(event){
 		v.$itemMod = $(this);
 		v.$item = v.$itemMod.find('.item');
 		v.$itemInput = $(this).find('.item').find('input');
 
+		var dragX = event.gesture.deltaX;
+		//console.log(dragX);
+		v.$item.css('margin-left',dragX+'px');
+
+		var dragY = event.gesture.deltaY;
+		//console.log(dragX);
+		v.$item.css('margin-left',dragX+'px');
+
 		//If item is not done...
 		if (!v.$itemMod.hasClass('done') && !v.$itemMod.hasClass('was-done')) {
 			//If scroll enters the done position
-			if ( v.$itemMod.scrollLeft() < -60 ) {
-				v.$itemMod.css('background-position-x', ((-60)-($(this).scrollLeft()))+"px");
+			if ( dragX > 55 ) {
+				v.$itemMod.css('background-position-x', (dragX-55)+"px");
 				v.$itemMod.addClass('check');
 			//If scroll enters the clear position
-			} else if ( v.$itemMod.scrollLeft() > 60 ) {
-				v.$itemMod.css('background-position-x', ((60)-($(this).scrollLeft()))+"px");
+			} else if ( dragX < -55 ) {
+				v.$itemMod.css('background-position-x', (dragX+55)+"px");
 			//Anywhere in between
 			} else {
 				v.$itemMod.css('background-position-x', '0px');
@@ -37,15 +60,13 @@ $(document).ready(function(){
 		//If item is done
 		} else {
 			//If scroll enters the un-do position
-			console.log(v.$itemMod);
-			console.log(v.$itemMod.scrollLeft());
-			if ( v.$itemMod.scrollLeft() < -60 ) {
-				v.$itemMod.css('background-position-x', ((-60)-($(this).scrollLeft()))+"px");
+			if ( dragX > 55 ) {
+				v.$itemMod.css('background-position-x', (dragX-55)+"px");
 				v.$itemMod.removeClass('done');
 				//v.$itemInput.prop('disabled', false);
 			//If scroll enters the clear position
-			} else if ( v.$itemMod.scrollLeft() > 60 ) {
-				v.$itemMod.css('background-position-x', ((60)-($(this).scrollLeft()))+"px");
+			} else if ( dragX < -55 ) {
+				v.$itemMod.css('background-position-x', (dragX+55)+"px");
 			//Anywhere in between
 			} else {
 				v.$itemMod.css('background-position-x', '0px');
@@ -56,80 +77,87 @@ $(document).ready(function(){
 
 	});//eo touchmove
 
-	$(document).on('touchstart', '.item-mod', function(){
+	$(document).hammer().on('dragstart', '.item-mod', function(){
 		$(this).attr('style','');
 	});
 
-	$(document).on('touchstart', '.item-mod.done', function(){
+	$(document).hammer().on('dragstart', '.item-mod.done', function(){
 		$(this).addClass('was-done');
 	});
 
 	//When touch on item is released
 	//Runs once when touch is released
-	$(document).on('touchend', '.item-mod', function(){
+	$('.mod').hammer().on('dragend', '.item-mod', function(event){
 		v.$itemMod = $(this);
 		v.$item = v.$itemMod.find('.item');
 		v.$itemInput = $(this).find('.item').find('input');
 
-		releasePoint = v.$itemMod.scrollLeft();
+		releasePoint = event.gesture.deltaX;
 
 		//If item is not done
 		if (!v.$itemMod.hasClass('done') && !v.$itemMod.hasClass('was-done')) {
 			v.$itemMod.attr('style','');
 			//And release point is in the 'done' zone
-			if ( releasePoint < -60 ) {
+			if ( releasePoint > 55 ) {
+				v.$item.addClass('slide-back').css('margin-left','0px');
 				afterCount = v.$itemMod.nextAll().not('.done').length;
 				v.$itemMod.css('background-position-x', ((-60)-($(this).scrollLeft()))+"px");
 				//Delay for item to momentum-scroll back, then do the move
 			    setTimeout( function(){
+			    	v.$item.removeClass('slide-back');
 			    	v.$itemMod.css('background-image','none');
 					v.$itemMod.addClass('done').removeClass('check');
-					v.$itemInput.prop('disabled', true);
 					v.$itemModClone = v.$itemMod.clone();
 			    	v.$itemModClone.insertAfter(v.$itemMod).addClass('shrink');
 					spacer.addClass('make-space');
 					v.$itemMod.addClass('remove').css('-webkit-transform', 'translate(0px,'+((afterCount-1)*67)+'px)');
-				},325 );
+				},200 );
 				//Delay for another 0.5s for item move to occur, then clean up the leftovers
 				setTimeout(function() {
     				v.$itemModClone.insertAfter(spacer).removeClass('shrink');
     				v.$itemMod.hide().remove();
     				spacer.removeClass('make-space');
     				v.$itemMod.css('background-image','url("clear.png")');
-    			}, 825);
+    			}, 600);
+			} else {
+				v.$item.addClass('slide-back').css('margin-left','0px');
+				setTimeout( function(){
+					v.$item.removeClass('slide-back');
+				},200 );
 			}
 		//If item is done
 		} else {
 			//And release point is in the un-do position
-			if ( releasePoint < -60 ) {
+			if ( releasePoint > 55 ) {
+				v.$item.addClass('slide-back').css('margin-left','0px');
 				beforeCount = v.$itemMod.prevAll('.done').length;
 				v.$itemMod.css('background-position-x', ((-60)-($(this).scrollLeft()))+"px");
 			    setTimeout( function(){
+			    	v.$item.removeClass('slide-back');
 					v.$itemMod.removeClass('done was-done check');
-					v.$itemInput.prop('disabled', false);
-					if (beforeCount > 0) {
-						spacer.addClass('make-space');
-						beforeCount++; //note this
-					}
+					spacer.addClass('make-space');
 					v.$itemModClone = v.$itemMod.clone();
 			    	v.$itemModClone.insertAfter(v.$itemMod).addClass('shrink');
-					v.$itemMod.addClass('remove').css('-webkit-transform', 'translate(0px,'+(-(beforeCount)*67)+'px)');
-				},350 );
+					v.$itemMod.addClass('remove').css('-webkit-transform', 'translate(0px,'+(-(beforeCount+1)*67)+'px)');
+				}, 200);
 				
 				setTimeout(function() {
     				v.$itemModClone.insertBefore(spacer).removeClass('shrink');
     				v.$itemMod.hide().remove();
     				spacer.removeClass('make-space');
-    			}, 850);
+    			}, 600);
+			} else {
+				v.$item.addClass('slide-back').css('margin-left','0px');
+				setTimeout( function(){
+					v.$item.removeClass('slide-back');
+				}, 200);
 			}
 		} //eo if item is done / not done
 
 		//No matter what, if release point is in the clear position
-		if ( releasePoint > 60 ) {
-			v.$itemMod.css('-webkit-overflow-scrolling','none').css('background-image', 'none');
-			v.$itemMod.addClass('transition');
-			v.$item.css('left', releasePoint+'px').css('position','absolute');
-			v.$item.css('left','-321px');
+		if ( releasePoint < -55 ) {
+			v.$itemMod.css('background-image', 'none');
+			v.$item.addClass('slide-out').css('margin-left','-321px');
 			v.$itemMod.addClass('shrink-after gone');
 			setTimeout(function() {
 				v.$itemMod.remove();
@@ -140,20 +168,18 @@ $(document).ready(function(){
 	//Tap in space below items creates new item
 	//Additional measure checks scroll between touchstart and touchend
 	//In order to determine the difference between tap and scrolling
-	var scroll;
-	var newScroll;
 	var itemModTemplate = $('#item-mod-template .item-mod');
-	$('#new-item-trigger').on('touchstart', function(){
-		scroll = $(window).scrollTop();
+
+	$('#new-item-trigger').hammer().on('tap', function(){
+		itemModTemplate.clone().insertBefore(spacer);
+		$('.item-mod.new input').focus();
+		$('.item-mod.new').removeClass('new');
 	});
 
-	$('#new-item-trigger').on('touchend', function(){
-		newScroll = $(window).scrollTop();
-		if (scroll == newScroll ) {
-			itemModTemplate.clone().insertBefore(spacer);
-			$('.item-mod.new input').focus();
-			$('.item-mod.new').removeClass('new');
-		}
+	$('.item').hammer().on('tap', function(){
+		$(this).find('input').removeAttr("disabled").focus();
+		$(this).closest('.item-mod').addClass('focus');
+		$('.mod').addClass('focus');
 	});
 
 	//On focus of input, trigger focus classes
@@ -162,10 +188,17 @@ $(document).ready(function(){
 		$(this).closest('.item-mod').addClass('focus');
 	});
 
+	$("input").keyup(function (e) {
+	    if (e.keyCode == 13) {
+	        $(this).attr("disabled", "disabled").blur();
+	    }
+	});
+
 	//Blur. Some problems with this working on newly created items. 
 	//'.on' didn't seem to work either.
 	$('input').blur(function(){
 		var itemMod = $(this).closest('.item-mod');
+		$(this).attr("disabled", "disabled");
 		$('.mod').removeClass('focus');
 		itemMod.removeClass('focus');
 		var value = $(this).val();
