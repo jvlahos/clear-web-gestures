@@ -13,24 +13,45 @@ $(document).ready(function(){
 	var afterCount, beforeCount, releasePoint;
 	var spacer = $('#spacer');
 
-	// $(document).hammer({drag_min_distance: 0}).on('drag dragend', '.mod', function(event){
-	// 	console.log(event);
-	// 	if (event.type == "drag" && $(window).scrollTop() == 0) {
-	// 		//$('.mod').css('margin-top',event.gesture.deltaY+"px");
-	// 		$('#new-item-top').css('height', event.gesture.deltaY+"px");
-	// 	} else {
-	// 		$('.mod').addClass('slide-back').css('margin-top', '0px');
-	// 		setTimeout(function() {
-	// 			$('.mod').removeClass('slide-back');
-	// 		}, 200);
-	// 	}
-	// 	$('#new-item-top').css('-webkit-transform', 'rotateX('+(90-(((event.gesture.deltaY)/67)*90))+'deg)');
-	// });
+	$(document).hammer({drag_min_distance: 0}).on('drag dragend', '.mod', function(event){
+		console.log(event);
+		if (event.type == "drag" && $(window).scrollTop() == 0) {
+			if (event.gesture.deltaY > 67 ) {
+				$('#new-item-top').find('input').val('Release to Create Item');
+				$('body').css('margin-top', ((event.gesture.deltaY) - 67)+"px");
+			} else {
+				$('#new-item-top').css('height', event.gesture.deltaY+"px");
+				$('#new-item-top .item').css('background-color', 'hsl(0, 100%, '+((event.gesture.deltaY)-20)+'%)');
+				$('#new-item-top .item').css('border-color', 'hsl(0, 100%, '+((event.gesture.deltaY)-20)+'%)');
+				$('#new-item-top').find('input').val('Pull to Create Task');
+				$('#new-item-top').css('-webkit-transform', 'rotateX('+(90-(((event.gesture.deltaY)/67)*90))+'deg)');
+			}
+		} else {
+			if (event.gesture.deltaY > 67 ) {
+				$('body').addClass('slide-back').css('margin-top','0px');
+				$('#new-item-top').css('height', "0px");
+				$('.mod').prepend(itemModTemplate.clone());
+				$('.item-mod.new input').focus();
+				$('.item-mod.new').removeClass('new');
+				setTimeout(function() {
+					$('body').removeClass('slide-back');
+				}, 200);
+			} else {
+				$('#new-item-top').addClass('animate-back');
+				$('#new-item-top').css('height', "0px");
+				$('#new-item-top').css('-webkit-transform', 'rotateX(90deg)');
+				setTimeout(function() {
+					$('#new-item-top').removeClass('animate-back');
+					$('#new-item-top').attr('style','');
+				}, 100);
+			}
+		}
+	});
 
 
 	//When any item is touched and being moved
 	//Runs every pixel
-	$('.mod').not('.focus').hammer({drag_block_vertical: true}).on('drag', '.item-mod', function(event){
+	$(document).hammer({drag_block_vertical: true}).on('drag', '.item-mod', function(event){
 		v.$itemMod = $(this);
 		v.$item = v.$itemMod.find('.item');
 		v.$itemInput = $(this).find('.item').find('input');
@@ -38,6 +59,10 @@ $(document).ready(function(){
 		var dragX = event.gesture.deltaX;
 		//console.log(dragX);
 		v.$item.css('margin-left',dragX+'px');
+
+		if ( event.gesture.deltaY > 15 || event.gesture.deltaY < -15 ) {
+			dragX = 0;
+		}
 
 		var dragY = event.gesture.deltaY;
 		//console.log(dragX);
@@ -87,7 +112,7 @@ $(document).ready(function(){
 
 	//When touch on item is released
 	//Runs once when touch is released
-	$('.mod').hammer().on('dragend', '.item-mod', function(event){
+	$(document).hammer().on('dragend', '.item-mod', function(event){
 		v.$itemMod = $(this);
 		v.$item = v.$itemMod.find('.item');
 		v.$itemInput = $(this).find('.item').find('input');
@@ -170,25 +195,26 @@ $(document).ready(function(){
 	//In order to determine the difference between tap and scrolling
 	var itemModTemplate = $('#item-mod-template .item-mod');
 
-	$('#new-item-trigger').hammer().on('tap', function(){
+	$('body').not('.focus').hammer().on('tap', '#new-item-trigger', function(){
 		itemModTemplate.clone().insertBefore(spacer);
 		$('.item-mod.new input').focus();
 		$('.item-mod.new').removeClass('new');
 	});
 
-	$('.item').hammer().on('tap', function(){
+	$(document).hammer().on('tap', '.item', function(){
 		$(this).find('input').removeAttr("disabled").focus();
 		$(this).closest('.item-mod').addClass('focus');
-		$('.mod').addClass('focus');
+		$('.mod, body').addClass('focus');
+
 	});
 
 	//On focus of input, trigger focus classes
-	$('input').on('focus',function(){
-		$('.mod').addClass('focus');
+	$(document).on('focus','input',function(){
+		$('.mod, body').addClass('focus');
 		$(this).closest('.item-mod').addClass('focus');
 	});
 
-	$("input").keyup(function (e) {
+	$(document).on('keyup', 'input', function (e) {
 	    if (e.keyCode == 13) {
 	        $(this).attr("disabled", "disabled").blur();
 	    }
@@ -196,10 +222,10 @@ $(document).ready(function(){
 
 	//Blur. Some problems with this working on newly created items. 
 	//'.on' didn't seem to work either.
-	$('input').blur(function(){
+	$(document).on('blur','input', function(){
 		var itemMod = $(this).closest('.item-mod');
 		$(this).attr("disabled", "disabled");
-		$('.mod').removeClass('focus');
+		$('.mod, body').removeClass('focus');
 		itemMod.removeClass('focus');
 		var value = $(this).val();
 		if (value == "" || value == 0) {

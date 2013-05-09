@@ -169,3 +169,11 @@ input:disabled {
 	-webkit-transform: rotateX(90deg);
 	-webkit-transition: none;
 }
+
+#new-item-top .item {
+	background-color: hsl(0, 100%, 40%);
+}
+
+#new-item-top.animate-back {
+	-webkit-transition: -webkit-transform 0.1s ease-in-out 0s, height 0.1s ease-in-out 0s;
+}
