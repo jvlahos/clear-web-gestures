@@ -21,7 +21,7 @@ $(document).ready(function(){
 	var scroll = false;
 	// setInterval(function(){ console.log("focus ="+focus); }, 500);
 	// setInterval(function(){ console.log("itemMotion ="+itemMotion); }, 500);
-	// setInterval(function(){ console.log("scroll ="+scroll); }, 500);
+	setInterval(function(){ console.log("scroll ="+scroll); }, 500);
 	
 	$(document).hammer({drag_min_distance: 0}).on('drag', '.mod', function(event){
 		if ($(window).scrollTop() <= 0) {
@@ -35,6 +35,10 @@ $(document).ready(function(){
 				$('#new-item-top').find('input').val('Pull to Create Task');
 				$('#new-item-top').css('-webkit-transform', 'rotateX('+(90-(((event.gesture.deltaY)/67)*90))+'deg)');
 			}
+		}
+
+		if (event.gesture.deltaY > 20 || event.gesture.deltaY < -20) {
+			scroll = true;
 		}
 	});
 
@@ -57,6 +61,7 @@ $(document).ready(function(){
 				$('#new-item-top').attr('style','');
 			}, 100);
 		}
+		scroll = false;
 	});
 
 
@@ -64,6 +69,7 @@ $(document).ready(function(){
 	//Runs every pixel
 	$(document).hammer({drag_block_vertical: false}).on('drag', '.item-mod', function(event){
 		if ( itemMotion == true ) { return; }
+		if ( scroll == true ) { return; }
 		v.$itemMod = $(this);
 		v.$item = v.$itemMod.find('.item');
 		v.$itemInput = $(this).find('.item').find('input');
@@ -125,6 +131,7 @@ $(document).ready(function(){
 	//When touch on item is released
 	//Runs once when touch is released
 	$(document).hammer().on('dragend', '.item-mod', function(event){
+		if ( scroll == true ) { return; }
 		v.$itemMod = $(this);
 		v.$item = v.$itemMod.find('.item');
 		v.$itemInput = $(this).find('.item').find('input');
