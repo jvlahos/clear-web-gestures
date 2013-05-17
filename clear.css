@@ -28,6 +28,7 @@ input:disabled {
 	opacity: 1;
 	overflow-x: hidden;
 	width: 320px;
+	z-index: 1;
 	/*-webkit-overflow-scrolling: touch;*/
 	-webkit-transition: -webkit-transform 0.4s ease-in-out 0s, 
 						height 0.4s ease-in-out 0s,
@@ -62,7 +63,7 @@ input:disabled {
 /*Item contents*/
 /*Note: extra 1px allows for overflow-scrolling*/
 .item {
-	background-color: #FF0000;
+	background-color: hsl(0,100%,50%);
 	border-top: 2px solid #FF3366;
 	border-bottom: 1px solid #CC0000;
 	padding: 20px;
@@ -151,14 +152,50 @@ input:disabled {
 /*Space below items. Tap triggers new item*/
 #new-item-trigger {
 	height: 300px;
-	width: 100%;
+	width: 320px;
+	margin: 0 auto;
+	-webkit-perspective: 2000;
+	-webkit-perspective-origin: 50% 0%;
+}
+
+body:not(.focus) #new-item-trigger:hover {
+	cursor: crosshair;
+}
+
+body.focus #new-item-trigger:hover {
+	cursor: default;
+}
+
+
+#new-item-trigger .hanger {
+	-webkit-transform-origin: 50% 0%;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: rotateX(-90deg);
+	-webkit-backface-visibility: hidden;
+	z-index: 0;
+	position: relative;
+}
+
+#new-item-trigger .hanger.no-transition {
+	-webkit-transition: none;
+}
+
+#new-item-trigger .hanger .item {
+	background-color: hsl(0, 100%, 35%);
+}
+
+#new-item-trigger:hover .hanger {
+	-webkit-transform: rotateX(-75deg);
+}
+
+body.focus #new-item-trigger:hover .hanger {
+	-webkit-transform: rotateX(-90deg);
 }
 
 /*Hide the template for items*/
 #item-mod-template {
 	display: none;
 }
-
 
 #new-item-top {
 	width: 320px;
