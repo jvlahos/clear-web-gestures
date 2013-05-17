@@ -16,9 +16,9 @@ $(document).ready(function(){
 	var afterCount, beforeCount, releasePoint;
 	var spacer = $('#spacer');
 
-	var action = false;
+	var focus = false;
 	var itemMotion = false;
-	// setInterval(function(){ console.log("action ="+action); }, 500);
+	// setInterval(function(){ console.log("focus ="+focus); }, 500);
 	// setInterval(function(){ console.log("itemMotion ="+itemMotion); }, 500);
 	
 	$(document).hammer({drag_min_distance: 0}).on('drag', '.mod', function(event){
@@ -227,7 +227,7 @@ $(document).ready(function(){
 			$('.mod .item-mod.new input').focus();
 			$('.mod .item-mod.new').removeClass('new');
 			$('.hanger').removeClass('no-transition');
-			action = true;
+			focus = true;
 		}, 400);
 		
 	});
@@ -264,7 +264,7 @@ $(document).ready(function(){
 			setTimeout(function() {
 				itemMod.remove();
 				$('.hanger').attr('style','');
-				action = false;
+				focus = false;
 			}, 400);
 		}
 	});
