@@ -21,7 +21,7 @@ $(document).ready(function(){
 	var scroll = false;
 	// setInterval(function(){ console.log("focus ="+focus); }, 500);
 	// setInterval(function(){ console.log("itemMotion ="+itemMotion); }, 500);
-	setInterval(function(){ console.log("scroll ="+scroll); }, 500);
+	// setInterval(function(){ console.log("scroll ="+scroll); }, 500);
 	
 	$(document).hammer({drag_min_distance: 0}).on('drag', '.mod', function(event){
 		if ($(window).scrollTop() <= 0) {
