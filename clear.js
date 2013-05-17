@@ -17,9 +17,11 @@ $(document).ready(function(){
 	var spacer = $('#spacer');
 
 	var focus = false;
-	var itemMotion = false;
+	var itemMotion = false; 
+	var scroll = false;
 	// setInterval(function(){ console.log("focus ="+focus); }, 500);
 	// setInterval(function(){ console.log("itemMotion ="+itemMotion); }, 500);
+	// setInterval(function(){ console.log("scroll ="+scroll); }, 500);
 	
 	$(document).hammer({drag_min_distance: 0}).on('drag', '.mod', function(event){
 		if ($(window).scrollTop() <= 0) {
@@ -60,7 +62,7 @@ $(document).ready(function(){
 
 	//When any item is touched and being moved
 	//Runs every pixel
-	$(document).hammer({drag_block_vertical: true}).on('drag', '.item-mod', function(event){
+	$(document).hammer({drag_block_vertical: false}).on('drag', '.item-mod', function(event){
 		if ( itemMotion == true ) { return; }
 		v.$itemMod = $(this);
 		v.$item = v.$itemMod.find('.item');
