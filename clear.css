@@ -61,7 +61,6 @@ input:disabled {
 }
 
 /*Item contents*/
-/*Note: extra 1px allows for overflow-scrolling*/
 .item {
 	background-color: hsl(45,100%,50%);
 	border-top: 2px solid hsl(45,100%,70%);
@@ -69,6 +68,9 @@ input:disabled {
 	padding: 20px;
 	width: 280px;
 	height: 24px;
+	-webkit-transition: background-color 0.4s ease-in-out 0s,
+						border-top 0.4s ease-in-out 0s,
+						border-bottom 0.4s ease-in-out 0s;
 }
 
 /*Input inside the item*/

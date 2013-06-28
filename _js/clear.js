@@ -227,15 +227,15 @@ $(document).ready(function(){
 	});
 
 	function updateColors(){
-		console.log('updateColors');
+		// console.log('updateColors');
 		var hue;
-		var items = $('#mod .item-mod').not('.done');
-		console.log('items', items);
+		var items = $('#mod .item-mod').not('.done').not('.check');
+		// console.log('items', items);
 		var itemsCount = items.length - 1;
-		console.log('itemsCount', itemsCount);
+		if (itemsCount < 5) {  itemsCount = 5; }
 		items.each(function( index ){
 			hue = (45/itemsCount) * index;
-			console.log('hue', hue);
+			// console.log('hue', hue);
 			$(this).children('.item')
 				.css('background-color', 'hsl('+hue+',100%, 50%);')
 				.css('border-top-color', 'hsl('+hue+',100%, 70%);')
