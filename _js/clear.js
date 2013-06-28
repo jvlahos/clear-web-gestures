@@ -106,6 +106,10 @@ $(document).ready(function(){
 			if ( dragX > 55 ) {
 				v.$itemMod.css('background-position-x', (dragX-55)+"px");
 				v.$itemMod.removeClass('done');
+				v.$item
+					.css('background-color', 'hsl(45,100%, 50%);')
+					.css('border-top-color', 'hsl(45,100%, 70%);')
+					.css('border-bottom-color', 'hsl(45,100%, 30%);');
 				//v.$itemInput.prop('disabled', false);
 			//If scroll enters the clear position
 			} else if ( dragX < -55 ) {
@@ -227,7 +231,7 @@ $(document).ready(function(){
 		var hue;
 		var items = $('#mod .item-mod').not('.done');
 		console.log('items', items);
-		var itemsCount = items.length;
+		var itemsCount = items.length - 1;
 		console.log('itemsCount', itemsCount);
 		items.each(function( index ){
 			hue = (45/itemsCount) * index;

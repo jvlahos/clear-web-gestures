@@ -64,8 +64,8 @@ input:disabled {
 /*Note: extra 1px allows for overflow-scrolling*/
 .item {
 	background-color: hsl(45,100%,50%);
-	border-top: 2px solid #FF3366;
-	border-bottom: 1px solid #CC0000;
+	border-top: 2px solid hsl(45,100%,70%);
+	border-bottom: 1px solid hsl(45,100%,30%);
 	padding: 20px;
 	width: 280px;
 	height: 24px;
