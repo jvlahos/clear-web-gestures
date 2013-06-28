@@ -21,7 +21,7 @@ input:disabled {
 /*Item container*/
 .item-mod {
 	background-color: #111;
-	background-image: url('clear.png');
+	background-image: url('_assets/clear.png');
 	background-repeat: no-repeat;
 	position: relative;
 	height: 67px;
@@ -63,7 +63,7 @@ input:disabled {
 /*Item contents*/
 /*Note: extra 1px allows for overflow-scrolling*/
 .item {
-	background-color: hsl(0,100%,50%);
+	background-color: hsl(45,100%,50%);
 	border-top: 2px solid #FF3366;
 	border-bottom: 1px solid #CC0000;
 	padding: 20px;
@@ -93,9 +93,9 @@ input:disabled {
 
 /*When item is checked (mid-gesture)*/
 .item-mod.check .item {
-	background-color: #339900;
-	border-top: 2px solid #66CC33;
-	border-bottom: 1px solid #336600;
+	background-color: #339900 !important;
+	border-top: 2px solid #66CC33 !important;
+	border-bottom: 1px solid #336600 !important;
 }
 
 .item-mod.check .item input {
@@ -104,9 +104,9 @@ input:disabled {
 
 /*When item is done*/
 .item-mod.done .item {
-	background-color: #222;
-	border-top: 2px solid #333;
-	border-bottom: 1px solid #111;
+	background-color: #222 !important;
+	border-top: 2px solid #333 !important;
+	border-bottom: 1px solid #111 !important;
 	-webkit-transition: background-color 0.4s linear 0s, border 0.4s linear 0s;
 }
 
@@ -181,7 +181,9 @@ body.focus #new-item-trigger:hover {
 }
 
 #new-item-trigger .hanger .item {
-	background-color: hsl(0, 100%, 35%);
+	background-color: hsl(45,100%,40%);
+	border-top: 2px solid hsl(45,100%,60%);
+	border-bottom: 1px solid hsl(45,100%,20%);
 }
 
 #new-item-trigger:hover .hanger {
@@ -208,7 +210,7 @@ body.focus #new-item-trigger:hover .hanger {
 }
 
 #new-item-top .item {
-	background-color: hsl(0, 100%, 40%);
+	background-color: hsl(0, 100%, 50%);
 }
 
 #new-item-top.animate-back {

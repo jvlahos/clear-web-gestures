@@ -217,7 +217,27 @@ $(document).ready(function(){
 				itemMotion = false;
 			}, 400);
 		}
+
+		//No matter what, update colors
+		updateColors();
 	});
+
+	function updateColors(){
+		console.log('updateColors');
+		var hue;
+		var items = $('#mod .item-mod').not('.done');
+		console.log('items', items);
+		var itemsCount = items.length;
+		console.log('itemsCount', itemsCount);
+		items.each(function( index ){
+			hue = (45/itemsCount) * index;
+			console.log('hue', hue);
+			$(this).children('.item')
+				.css('background-color', 'hsl('+hue+',100%, 50%);')
+				.css('border-top-color', 'hsl('+hue+',100%, 70%);')
+				.css('border-bottom-color', 'hsl('+hue+',100%, 30%);')
+		});
+	}
 
 	//Tap in space below items creates new item
 	//Additional measure checks scroll between touchstart and touchend
@@ -227,7 +247,7 @@ $(document).ready(function(){
 	$(document).hammer().on('tap', '#new-item-trigger', function(){
 		if ( focus == true ) { return; }
 		$(this).find('.hanger').css('-webkit-transform','rotateX(0deg)');
-		$(this).find('.hanger').find('.item').css('background-color', 'hsl(0, 100%, 50%)');
+		$(this).find('.hanger').find('.item').css('background-color', 'hsl(45, 100%, 50%)');
 		setTimeout(function(){
 			$('.hanger').addClass('no-transition');
 			$('.hanger').attr('style','');
@@ -237,6 +257,7 @@ $(document).ready(function(){
 			$('.mod .item-mod.new').removeClass('new');
 			$('.hanger').removeClass('no-transition');
 			focus = true;
+			updateColors();
 		}, 400);
 		
 	});
