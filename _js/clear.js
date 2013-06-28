@@ -16,12 +16,17 @@ $(document).ready(function(){
 	var afterCount, beforeCount, releasePoint;
 	var spacer = $('#spacer');
 
+	var wait = true;
 	var focus = false;
 	var itemMotion = false; 
 	var scroll = false;
 	// setInterval(function(){ console.log("focus ="+focus); }, 500);
 	// setInterval(function(){ console.log("itemMotion ="+itemMotion); }, 500);
 	// setInterval(function(){ console.log("scroll ="+scroll); }, 500);
+
+	setTimeout(function(){
+		wait = false;
+	}, 100);
 	
 	$(document).hammer({drag_min_distance: 0}).on('drag', '.mod', function(event){
 		if ($(window).scrollTop() <= 0) {
@@ -271,7 +276,6 @@ $(document).ready(function(){
 		$(this).find('input').removeAttr("disabled").focus();
 		$(this).closest('.item-mod').addClass('focus');
 		$('.mod, body').addClass('focus');
-
 	});
 
 	//On focus of input, trigger focus classes
@@ -280,14 +284,14 @@ $(document).ready(function(){
 		$(this).closest('.item-mod').addClass('focus');
 	});
 
-	//Blur. Some problems with this working on newly created items. 
-	//'.on' didn't seem to work either.
+	//Blur
 	$(document).on('blur','input', function(){
 		var itemMod = $(this).closest('.item-mod');
 		$('.hanger').css('-webkit-transform','rotateX(-90deg)');
 		$(this).attr("disabled", "disabled");
 		$('.mod, body').removeClass('focus');
 		itemMod.removeClass('focus');
+		$('.hanger').attr('style','');
 		var value = $(this).val();
 		if (value == "" || value == 0) {
 			itemMod.css('-webkit-overflow-scrolling','none').css('background-image', 'none');
@@ -300,6 +304,11 @@ $(document).ready(function(){
 				$('.hanger').attr('style','');
 				focus = false;
 			}, 400);
+		} else {
+			setTimeout(function() {
+				$('.hanger').attr('style','');
+				focus = false;
+			}, 400);
 		}
 	});
 
@@ -308,5 +317,30 @@ $(document).ready(function(){
 	        $(this).attr("disabled", "disabled").blur();
 	    }
 	});
+
+	$(document).on('keyup',function(e){
+		if (wait == true) { return; }
+
+		var keycode = e.keyCode;
+	    var valid = 
+	        (keycode > 47 && keycode < 58)   || // number keys
+	        keycode == 32 || keycode == 13   || // spacebar & return key(s) (if you want to allow carriage returns)
+	        (keycode > 64 && keycode < 91)   || // letter keys
+	        (keycode > 95 && keycode < 112)  || // numpad keys
+	        (keycode > 185 && keycode < 193) || // ;=,-./` (in order)
+	        (keycode > 218 && keycode < 223);   // [\]' (in order)
+
+		if (!$('.mod, body').hasClass('focus') && valid) {
+			$('#new-item-trigger').trigger('tap');
+			wait = true;
+			setTimeout(function() {
+				$('.item-mod.focus').find('.item').find('input').val(String.fromCharCode(e.which));
+				wait = false;
+			}, 400);
+		} else if ($('.mod, body').hasClass('focus') && e.keyCode == 27) {
+			$('.item-mod.focus').find('input').val('').blur();
+		}
+	});
+
 
 });
