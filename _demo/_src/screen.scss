@@ -1,0 +1,138 @@
+/* ## Bring in all Compass Helpers */ 
+@import "partials/base";
+
+/* ## Base CSS */
+// @import "project/type";
+// @import "project/forms";
+// @import "project/tables";
+// @import "project/lists";
+
+/* ## Components */
+// @import "project/buttons";
+// @import "project/dropdowns";
+// @import "project/tabs";
+// @import "project/modals";
+// @import "project/tooltips";
+
+
+  
+/* ============================================= */
+/*	Universal						   			 */ 
+/* ============================================= */
+
+a 		{ 	text-decoration: none; color: inherit; }
+strong	{	font-weight: bold;	}
+em   	{	font-style: italic;	}
+
+sub, sup { 
+	font-size: 75%;
+	line-height: 0; 
+	position: relative; 
+	vertical-align: baseline; 
+}
+sup { 
+	top: -0.5em; 
+}
+sub { 
+	bottom: -0.25em; 
+}
+
+%clear {
+	/* IE; if deemed necessary */
+	//@include filter-gradient($rgi-dark-orange, $rgi-light-orange, horizontal);
+	/* Fallback: */
+	//background: $rgi-dark-orange;
+	/* IE10 Consumer Preview */ 
+	//background-image: -ms-linear-gradient(left, $rgi-dark-orange 0%, $rgi-light-orange 100%);
+	/* CSS 3 plus vendor prefixes: */
+	@include background-image(linear-gradient(left, hsl(0,100%,50%) 0%, hsl(0,100%,50%) 20%, hsl(12,100%,50%) 20%, hsl(12,100%,50%) 40%, hsl(24,100%,50%) 40%, hsl(24,100%,50%) 60%, hsl(36,100%,50%) 60%, hsl(36,100%,50%) 80%, hsl(45,100%,50%) 80%, hsl(45,100%,50%) 100%));
+}
+
+body {
+	margin: 0 auto;
+	width: 768px;
+}
+
+header {
+	padding-top: 5px;
+	@extend %clear;
+	span {
+		background-color: #EEEEEE;
+		display: block;
+		font-family: "freight-text-pro", sans-serif;
+		font-size: 14px;
+		font-style: italic;
+		padding: 10px 0;
+		text-align: center;
+	}
+}
+
+#main {
+	margin-top: 20px;
+	@include pie-clearfix;
+}
+
+#demo {
+	background-color: hsl(0,0%,5%);
+	float: left;
+	height: 500px;
+	overflow-y: scroll;
+	width: 320px;
+	iframe {
+		width: 100%;
+		height: 99%;
+	}
+}
+
+#intro {
+	float: left;
+	padding: 20px 15px 20px 35px;
+	width: 448px;
+}
+
+a {
+	color: rgb(0, 57, 118);
+}
+
+h1 {
+	color: hsl(20, 100%, 50%);
+	font-family: "freight-sans-pro", sans-serif;
+	font-size: 36px;
+}
+
+p {
+	color: #464646;
+	font-family: "freight-text-pro", sans-serif;
+	font-size: 20px;
+	line-height: 27px;
+	margin-bottom: 8px;
+}
+
+p#links {
+	margin-top: 20px;
+	a {
+		display: block;
+		margin-bottom: 5px;
+	}
+}
+
+footer {
+	background-color: #EEEEEE;
+	display: block;
+	font-size: 10px;
+	margin-top: 20px;
+	padding: 10px 0;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+/* ============================================= */
+/*	Print Styles							     
+	Inline to avoid required HTTP connection     */
+/* ============================================= */
+
+// Import Print Styles
+@import "project/print";
+
+
+
