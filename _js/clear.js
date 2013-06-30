@@ -1,33 +1,48 @@
 $(document).ready(function(){
 
 	//Sortable. This works if all the other events are turned off
+	//Maybe will work after hold event or something someday...
 	//$('.mod.sortable').sortable({items: '.item-mod'});
 
 	//Hide Address Bar on Load
 	window.scrollTo(0, 1);
 
-	//Holds item object for reference in setTimeout functions that lose scope
+	//These store different elements of an item being manipulated
+	//So that items can be references across anonymous setTimeout functions
 	var v = {};
 	v.$itemMod = null;
 	v.$item = null;
 	v.$itemInput = null;
 	v.$itemModClone = null;
 
-	var afterCount, beforeCount, releasePoint;
+	//These variables store the number of incomplete items before / after an item
+	//As a reference to calculate the distance an item needs to move to be completed or un-completed
+	var afterCount, beforeCount;
+
+	//Variable stores the gesture event
+	var releasePoint;
+
+	//The spacer is placed (and maintained) between incomplete and complete items
 	var spacer = $('#spacer');
 
+	//These booleans get set and unset throughout functions
+	//So that we can ensure only one gestural reaction can happen at a time
 	var wait = true;
 	var focus = false;
 	var itemMotion = false; 
 	var scroll = false;
+	// Debugging tools
 	// setInterval(function(){ console.log("focus ="+focus); }, 500);
 	// setInterval(function(){ console.log("itemMotion ="+itemMotion); }, 500);
 	// setInterval(function(){ console.log("scroll ="+scroll); }, 500);
 
+	//Don't let anything happen right when the page loads.
+	//Command+R to refresh would register as a keydown event.
 	setTimeout(function(){
 		wait = false;
 	}, 100);
 	
+	// Pull to Create Task - Drag Events
 	$(document).hammer({drag_min_distance: 0}).on('drag', '.mod', function(event){
 		if ($(window).scrollTop() <= 0) {
 			if (event.gesture.deltaY > 67 ) {
@@ -41,17 +56,18 @@ $(document).ready(function(){
 				$('#new-item-top').css('-webkit-transform', 'rotateX('+(90-(((event.gesture.deltaY)/67)*90))+'deg)');
 			}
 		}
-
 		if (event.gesture.deltaY > 20 || event.gesture.deltaY < -20) {
 			scroll = true;
 		}
 	});
 
+	// Pull to Create Task - Drag End Events
 	$(document).hammer({drag_min_distance: 0}).on('dragend', '.mod', function(event){
 		if (event.gesture.deltaY > 67 ) {
 			$('body').addClass('slide-back').css('margin-top','0px');
 			$('#new-item-top').css('height', "0px");
 			$('.mod').prepend(itemModTemplate.clone());
+			updateColors();
 			$('.item-mod.new input').focus();
 			$('.mod .item-mod.new').removeClass('new');
 			setTimeout(function() {
@@ -70,8 +86,7 @@ $(document).ready(function(){
 	});
 
 
-	//When any item is touched and being moved
-	//Runs every pixel
+	// Drag Item X - Drag Events
 	$(document).hammer({drag_block_vertical: false}).on('drag', '.item-mod', function(event){
 		if ( itemMotion == true ) { return; }
 		if ( scroll == true ) { return; }
@@ -88,7 +103,6 @@ $(document).ready(function(){
 		}
 
 		var dragY = event.gesture.deltaY;
-		//console.log(dragX);
 		v.$item.css('margin-left',dragX+'px');
 
 		//If item is not done...
@@ -129,16 +143,18 @@ $(document).ready(function(){
 
 	});//eo touchmove
 
+	// Clears leftover styles on items when dragging begins
 	$(document).hammer().on('dragstart', '.item-mod', function(){
 		$(this).attr('style','');
 	});
 
+	// Creates an extra reference for items that were done
+	// And that soon might be manipulated
 	$(document).hammer().on('dragstart', '.item-mod.done', function(){
 		$(this).addClass('was-done');
 	});
 
-	//When touch on item is released
-	//Runs once when touch is released
+	// Drag Item X - Drag End Events
 	$(document).hammer().on('dragend', '.item-mod', function(event){
 		if ( scroll == true ) { return; }
 		v.$itemMod = $(this);
@@ -232,15 +248,12 @@ $(document).ready(function(){
 	});
 
 	function updateColors(){
-		// console.log('updateColors');
 		var hue;
 		var items = $('#mod .item-mod').not('.done').not('.check');
-		// console.log('items', items);
 		var itemsCount = items.length - 1;
 		if (itemsCount < 5) {  itemsCount = 5; }
 		items.each(function( index ){
 			hue = (45/itemsCount) * index;
-			// console.log('hue', hue);
 			$(this).children('.item')
 				.css('background-color', 'hsl('+hue+',100%, 50%);')
 				.css('border-top-color', 'hsl('+hue+',100%, 70%);')
@@ -248,11 +261,10 @@ $(document).ready(function(){
 		});
 	}
 
-	//Tap in space below items creates new item
-	//Additional measure checks scroll between touchstart and touchend
-	//In order to determine the difference between tap and scrolling
+	// Location of a hidden item which gets cloned when new items are created
 	var itemModTemplate = $('#item-mod-template .item-mod');
 
+	// Space below items that triggers a new item to be created
 	$(document).hammer().on('tap', '#new-item-trigger', function(){
 		if ( focus == true ) { return; }
 		$(this).find('.hanger').css('-webkit-transform','rotateX(0deg)');
@@ -271,20 +283,23 @@ $(document).ready(function(){
 		
 	});
 
+	// A tap on an item triggers focus on the input within that item
 	$(document).hammer().on('tap', '.item', function(){
-		if ( focus == true ) { return; }
+		if ( focus == true || $(this).parent().hasClass('done') ) { return; }
 		$(this).find('input').removeAttr("disabled").focus();
 		$(this).closest('.item-mod').addClass('focus');
 		$('.mod, body').addClass('focus');
 	});
 
-	//On focus of input, trigger focus classes
+	// Whenever focus on an input occurs, add some reference classes
+	// So we know that an item is currently being edited
 	$(document).on('focus','input',function(){
 		$('.mod, body').addClass('focus');
 		$(this).closest('.item-mod').addClass('focus');
 	});
 
-	//Blur
+	// Whenever an item is done being edited, close everything up.
+	// If the item has no contents, trash it.
 	$(document).on('blur','input', function(){
 		var itemMod = $(this).closest('.item-mod');
 		$('.hanger').css('-webkit-transform','rotateX(-90deg)');
@@ -312,24 +327,22 @@ $(document).ready(function(){
 		}
 	});
 
+	// When ENTER key is pressed, lock up the input. (Triggers blur event)
 	$(document).on('keyup', 'input', function (e) {
 	    if (e.keyCode == 13) {
 	        $(this).attr("disabled", "disabled").blur();
 	    }
 	});
 
+	// If a valid char keyCode is struck, create a new item.
+	// Currently buggy if you start typing too fast.
 	$(document).on('keyup',function(e){
-		if (wait == true) { return; }
-
+		if (wait == true || focus == true) { return; }
 		var keycode = e.keyCode;
 	    var valid = 
 	        (keycode > 47 && keycode < 58)   || // number keys
-	        keycode == 32 || keycode == 13   || // spacebar & return key(s) (if you want to allow carriage returns)
 	        (keycode > 64 && keycode < 91)   || // letter keys
-	        (keycode > 95 && keycode < 112)  || // numpad keys
-	        (keycode > 185 && keycode < 193) || // ;=,-./` (in order)
-	        (keycode > 218 && keycode < 223);   // [\]' (in order)
-
+	        (keycode > 95 && keycode < 112) // numpad keys
 		if (!$('.mod, body').hasClass('focus') && valid) {
 			$('#new-item-trigger').trigger('tap');
 			wait = true;
