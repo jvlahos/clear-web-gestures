@@ -250,10 +250,10 @@ $(document).ready(function(){
 	function updateColors(){
 		var hue;
 		var items = $('#mod .item-mod').not('.done').not('.check');
-		var itemsCount = items.length - 1;
+		var itemsCount = items.length;
 		if (itemsCount < 5) {  itemsCount = 5; }
 		items.each(function( index ){
-			hue = (45/itemsCount) * index;
+			hue = (45/itemsCount) * (index+1);
 			$(this).children('.item')
 				.css('background-color', 'hsl('+hue+',100%, 50%);')
 				.css('border-top-color', 'hsl('+hue+',100%, 70%);')

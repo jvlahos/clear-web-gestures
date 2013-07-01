@@ -16,7 +16,7 @@
 	</div>
 	<div id="mod" class="mod sortable">
 		<?php
-			$items = 5;
+			$items = 6;
 			for ($i=1; $i<=$items; $i++) {
 				$hue = (45 / $items)*$i;
 				echo '<div class="item-mod">';

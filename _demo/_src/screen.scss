@@ -68,7 +68,7 @@ header {
 }
 
 #main {
-	margin-top: 20px;
+	margin: 50px 0;
 	@include pie-clearfix;
 }
 
@@ -91,13 +91,14 @@ header {
 }
 
 a {
-	color: rgb(0, 57, 118);
+	color: lighten(rgb(0, 57, 118), 5%);
 }
 
-h1 {
+h1, h2 {
 	color: hsl(20, 100%, 50%);
 	font-family: "freight-sans-pro", sans-serif;
 	font-size: 36px;
+	margin-bottom: 5px;
 }
 
 p {
@@ -124,6 +125,25 @@ footer {
 	padding: 10px 0;
 	text-align: center;
 	text-transform: uppercase;
+}
+
+
+#story {
+	margin: 75px auto 0 auto;
+	padding-top: 75px;
+	width: 480px;
+	h2 { 
+		margin-bottom: 20px;
+		text-align: center;
+	}
+}
+
+.footnotes {
+	border-top: 1px solid #444444;
+	font-size: 16px;
+	line-height: 22px;
+	margin-top: 20px;
+	padding: 20px;
 }
 
 /* ============================================= */
