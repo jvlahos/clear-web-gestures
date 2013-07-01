@@ -386,7 +386,8 @@ header {
 
 body {
   margin: 0 auto;
-  width: 768px;
+  width: 100%;
+  min-width: 320px;
 }
 
 header {
@@ -398,26 +399,76 @@ header span {
   font-family: "freight-text-pro", sans-serif;
   font-size: 14px;
   font-style: italic;
-  padding: 10px 0;
+  padding: 10px 15px;
   text-align: center;
 }
 
+#main, footer {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
 #main {
-  margin: 50px 0;
   *zoom: 1;
+  margin: 50px auto;
 }
 #main:after {
   content: "";
   display: table;
   clear: both;
 }
+@media (min-width: 768px) and (min-height: 700px) {
+  #main {
+    margin: 50px auto;
+  }
+}
+@media (min-width: 768px) and (min-height: 800px) {
+  #main {
+    margin: 75px auto;
+  }
+}
+@media (min-width: 768px) and (min-height: 900px) {
+  #main {
+    margin: 125px auto;
+  }
+}
+@media (min-width: 768px) and (min-height: 1000px) {
+  #main {
+    margin: 175px auto;
+  }
+}
+@media (min-width: 768px) and (min-height: 1100px) {
+  #main {
+    margin: 225px auto;
+  }
+}
+@media (min-width: 768px) and (min-height: 1200px) {
+  #main {
+    margin: 300px auto;
+  }
+}
+@media (min-width: 768px) and (min-height: 1300px) {
+  #main {
+    margin: 350px auto;
+  }
+}
 
 #demo {
   background-color: #0d0d0d;
-  float: left;
   height: 500px;
   overflow-y: scroll;
+  margin: 0 auto;
   width: 320px;
+}
+@media (min-width: 768px) {
+  #demo {
+    float: left;
+  }
+}
+@media (max-width: 400px) {
+  #demo {
+    display: none;
+  }
 }
 #demo iframe {
   width: 100%;
@@ -425,9 +476,26 @@ header span {
 }
 
 #intro {
-  float: left;
-  padding: 20px 15px 20px 35px;
-  width: 448px;
+  padding: 0px 15px 20px 35px;
+}
+@media (min-width: 768px) {
+  #intro {
+    width: 448px;
+    float: left;
+  }
+}
+@media (max-width: 768px) {
+  #intro {
+    padding-top: 30px;
+  }
+}
+@media (max-width: 540px) {
+  #intro {
+    padding: 0;
+    padding-top: 30px;
+    width: 90%;
+    margin: 0 auto;
+  }
 }
 
 a {
@@ -457,12 +525,24 @@ p#links a {
   margin-bottom: 5px;
 }
 
+#share {
+  margin-top: 20px;
+  overflow: hidden;
+  *zoom: 1;
+}
+#share div, #share iframe {
+  float: left;
+}
+#share iframe {
+  width: 90px !important;
+}
+
 footer {
   background-color: #EEEEEE;
   display: block;
   font-size: 10px;
   margin-top: 20px;
-  padding: 10px 0;
+  padding: 10px 15px;
   text-align: center;
   text-transform: uppercase;
 }
@@ -471,6 +551,11 @@ footer {
   margin: 75px auto 0 auto;
   padding-top: 75px;
   width: 480px;
+}
+@media (max-width: 540px) {
+  #story {
+    width: 90%;
+  }
 }
 #story h2 {
   margin-bottom: 20px;

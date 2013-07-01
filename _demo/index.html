@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>Clear for Web: A gestural case study | Jeff Vlahos</title>
+	<title>Clear&rsquo;s Gestures + Motion on the Web | Jeff Vlahos</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 
@@ -31,19 +31,22 @@
 	<section id="main" role="main">
 		<article id="demo">
 			<iframe src="_demosrc/index.php"></iframe>
-			Click + drag incomplete items to the right to complete them. Click + drag complete items to the right to uncomplete them. Click + drag items to the left to delete them. Pull down 
 		</article>
 		<article id="intro">
-			<h1>A gestural case study based on Clear</h1>
-			<p>I recreated some gestures from one of the native-app world&rsquo;s most infamous gestural applications, Clear.<sup>1</sup> By publishing it and making it open source, I hope to remind designers and developers that gestural interactions aren&rsquo;t only limited to native apps. Dream big, kids.</p>
-			<p>Create, edit, delete, and complete some to-do&rsquo;s in the demo to the left.</p>
+			<h1>Clear&rsquo;s Gestures + Motion on the Web</h1>
+			<p>I recreated some gestural interactions from one of the native-app land&rsquo;s most infamous gestural applications, Clear.<sup>1</sup> By publishing it and making it open source, I hope to remind designers and developers that gestural interactions aren&rsquo;t only limited to native apps. Dream big, kids.</p>
+			<p>Create, edit, delete, and complete some to-do&rsquo;s in the demo.</p>
 			<p id="links">
-				<a href="#story">More about this experiment &gt;</a>
+				<a href="_demosrc/index.php">View standalone demo &gt;</a>
+				<a href="#story">Read more about this &gt;</a>
 				<a href="https://github.com/jvlahos/clear-web-gestures">Learn and contribute on Github &gt;</a>
 				<a href="http://eightmedia.github.io/hammer.js/">Hammer: a JavaScript gesture library &gt;</a>
 			</p>
-			<p id="share">
-			</p>
+			<div id="share">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.jeffvlahos.com/clear" data-via="jeffvlahos">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				<div class="fb-like" data-href="http://www.jeffvlahos.com/clear" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="arial"></div>
+			</div>
 		</article>
 	</section>
 
@@ -55,21 +58,29 @@
 		<h2>Why? What? How?</h2>
 		<p>I started this experiment quite haphazardly. I was ready to fall asleep in bed at about 11:30pm, and after ten minutes or so of pondering at the end of a work day, I plopped my laptop on my bed, and started making.<sup>1</sup></p>
 
-		<p>That night, I was thinking in particular about the landscape of native application design and web-based application design. My enthusiasm in this area had recently grown with the enticing prospect of designing and building web-based experiences at a quality comparable to those on native platforms. Just weeks before, the web app <a href="http://forecast.io">Forecast.io</a> was released. They’ve shared a wealth of tips about their experience creating a web experience that felt authentic.</p>
+		<p>That night, I was thinking in particular about the landscape of native application design and web-based application design. My enthusiasm in this area had recently grown with the enticing prospect of designing and building web-based experiences at a quality comparable to those on native platforms. Just weeks before, the web app <a href="http://forecast.io">Forecast.io</a> was released. They’ve shared a <a href="http://blog.forecast.io/its-not-a-web-app-its-an-app-you-install-from-the-web/">wealth of tips</a> on creating web experiences that can feel authentic on mobile devices.</p>
 
-		<p>However, one thing we all can’t deny is the gestural prowess of native applications on touch devices. Applications like the to-do app <a href="http://www.realmacsoftware.com/clear/">Clear</a> offer exceptional, unique gestural experiences. For the most part, users today only expect those types of experiences within native applications.</p>
+		<p>However, one thing we all can’t deny is the gestural prowess of native applications on touch devices. Applications like the to-do app <a href="http://www.realmacsoftware.com/clear/">Clear</a> offer exceptional, unique gestural experiences, and delightful animations and motion that follow. For the most part, users today only expect those types of experiences within native applications.</p>
 
-		<p>The first chord actually struck when I was using Forecast.io's horizontal forecast scroller. The team at Forecast didn't try to apply any fancy scrolling or anything to make this piece of machinery happen. It's simply a viewport-wide container with wider, scrollable contents. With <em>-webkit-overflow-scrolling:touch</em>, momentum scrolling is enacted when you reach the ends of the contents. I was fascinated by the natural inherence of that momentum scrolling, and it immediately made me think of Clear&rsquo;s motion and reflexes.</p>
+		<p>The first chord actually struck when I was using Forecast.io's horizontal forecast scroller. The team at Forecast didn't try to apply any fancy scrolling or anything to make this piece of machinery happen. It's simply a viewport-wide container with wider, scrollable contents. With <em>-webkit-overflow-scrolling:touch</em>, momentum scrolling is enacted when you scroll past the ends of the contents. What fascinated me was the natural inherence of that momentum scrolling, and at that point, it reminded me of the motion and reflexes of Clear.</p>
 
-		<p>From this discovery, I actually built a majority of this experiment using a complete hack first, before working with Hammer.js. Here&rsquo;s the hack: if you have a container that is A) 1px less-wide than the width of its contents, and B) has <em>-webkit-overflow-scrolling:touch</em> applied to it, then you can create the effect of momentum, bounce-back scrolling natively with only a 1px visual impact. Do you see where I'm going? Then, I bound jQuery scroll events to those containers, and triggered events based on positive and negative scrollLeft positions. It was an interesting discovery, though quickly became unsustainable. Translating those events to HammerJS ended up being effortless, and the benefits were clear.</p>
+		<p>Next, I actually built a majority of this experiment using a complete hack first, before trying Hammer.js for the first time. The hack was: if you have a container that is A) 1px less-wide than the width of its contents, and B) has <em>-webkit-overflow-scrolling:touch</em> applied to it, then you can create the effect of momentum, bounce-back scrolling inherently. With that, I bound jQuery scroll events to those containers, and triggered events based on positive and negative scrollLeft positions. It was an interesting discovery, though quickly became unsustainable. Translating those events to HammerJS ended up being effortless, and the benefits were clear.</p>
 
 
 
-		<p class="footnotes"><sup>1</sup>I question whether I would have bothered attempting this experiment if I went to sleep instead. When something excites you, don’t sleep on it. Do something about it right then. Anything. 
+		<p class="footnotes"><sup>1</sup>When something excites you, if you can afford to, don’t sleep on it. Do something about it right then. Anything to utilize your primetime energy and enthusiasm.
 		</p>
 	</section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 </body>
 </html>

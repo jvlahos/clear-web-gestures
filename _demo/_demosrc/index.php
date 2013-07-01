@@ -14,9 +14,9 @@
 				<input disabled="disabled" type="text" value="Pull to Create Task"/>
 		</div>
 	</div>
-	<div id="mod" class="mod sortable">
+	<div id="mod" class="mod">
 		<?php
-			$items = 6;
+			$items = 5;
 			for ($i=1; $i<=$items; $i++) {
 				$hue = (45 / $items)*$i;
 				echo '<div class="item-mod">';

@@ -50,7 +50,8 @@ sub {
 
 body {
 	margin: 0 auto;
-	width: 768px;
+	width: 100%;
+	min-width: 320px;
 }
 
 header {
@@ -62,22 +63,43 @@ header {
 		font-family: "freight-text-pro", sans-serif;
 		font-size: 14px;
 		font-style: italic;
-		padding: 10px 0;
+		padding: 10px 15px;
 		text-align: center;
 	}
 }
 
+%content {
+	max-width: 768px;
+	margin: 0 auto;
+}
+
 #main {
-	margin: 50px 0;
+	@extend %content;
 	@include pie-clearfix;
+	margin: 50px auto;
+	@media (min-width: 768px) {
+		@media (min-height:700px) { margin: 50px auto; }
+		@media (min-height:800px) { margin: 75px auto; }
+		@media (min-height:900px) { margin: 125px auto; }
+		@media (min-height:1000px) { margin: 175px auto; }
+		@media (min-height:1100px) { margin: 225px auto; }
+		@media (min-height:1200px) { margin: 300px auto; }
+		@media (min-height:1300px) { margin: 350px auto; }
+	}
 }
 
 #demo {
 	background-color: hsl(0,0%,5%);
-	float: left;
 	height: 500px;
 	overflow-y: scroll;
+	margin: 0 auto;
 	width: 320px;
+	@media (min-width: 768px) {
+		float: left;
+	}
+	@media (max-width: 400px) {
+		display: none;
+	}
 	iframe {
 		width: 100%;
 		height: 99%;
@@ -85,9 +107,19 @@ header {
 }
 
 #intro {
-	float: left;
-	padding: 20px 15px 20px 35px;
-	width: 448px;
+	padding: 0px 15px 20px 35px;
+	@media (min-width: 768px) {
+		width: 448px;
+		float: left;
+	}
+	@media (max-width: 768px) {
+		padding-top: 30px;
+	}
+	@media (max-width: 540px) {
+		padding: 0; padding-top: 30px;
+		width: 90%;
+		margin: 0 auto;
+	}
 }
 
 a {
@@ -117,12 +149,24 @@ p#links {
 	}
 }
 
+#share {
+	margin-top: 20px;
+	@include clearfix;
+	div, iframe {
+		float: left;
+	}
+	iframe {
+		width: 90px !important;
+	}
+}
+
 footer {
+	@extend %content;
 	background-color: #EEEEEE;
 	display: block;
 	font-size: 10px;
 	margin-top: 20px;
-	padding: 10px 0;
+	padding: 10px 15px;
 	text-align: center;
 	text-transform: uppercase;
 }
@@ -132,6 +176,9 @@ footer {
 	margin: 75px auto 0 auto;
 	padding-top: 75px;
 	width: 480px;
+	@media (max-width: 540px) {
+		width: 90%;
+	}
 	h2 { 
 		margin-bottom: 20px;
 		text-align: center;
