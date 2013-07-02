@@ -548,6 +548,7 @@ footer {
 }
 
 #story {
+  display: none;
   margin: 75px auto 0 auto;
   padding-top: 75px;
   width: 480px;
