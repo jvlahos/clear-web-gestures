@@ -1,3 +1,7 @@
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*This document needs cleanup.*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
 /*Standard reset*/
 * { padding: 0; margin: 0; }
 
@@ -161,51 +165,6 @@ input:disabled {
 	background-image: none;
 }
 .mod.focus .item-mod.focus { opacity: 1 }
-
-/*Space below items. Tap triggers new item*/
-#new-item-trigger {
-	height: 150px;
-	width: 320px;
-	margin: 0 auto;
-	-webkit-perspective: 2000;
-	-webkit-perspective-origin: 50% 0%;
-}
-
-/*body:not(.focus) #new-item-trigger:hover {
-	cursor: crosshair;
-}*/
-
-body.focus #new-item-trigger:hover {
-	cursor: default;
-}
-
-
-#new-item-trigger .hanger {
-	-webkit-transform-origin: 50% 0%;
-	-webkit-transform-style: preserve-3d;
-	-webkit-transform: rotateX(-90deg);
-	-webkit-backface-visibility: hidden;
-	z-index: 0;
-	position: relative;
-}
-
-#new-item-trigger .hanger.no-transition {
-	-webkit-transition: none;
-}
-
-/*#new-item-trigger .hanger .item {
-	background-color: hsl(30,100%,40%);
-	border-top: 2px solid hsl(30,100%,60%);
-	border-bottom: 1px solid hsl(30,100%,20%);
-}
-
-#new-item-trigger:hover .hanger {
-	-webkit-transform: rotateX(-75deg);
-}
-
-body.focus #new-item-trigger:hover .hanger {
-	-webkit-transform: rotateX(-90deg);
-}*/
 
 /*Hide the template for items*/
 #item-mod-template {

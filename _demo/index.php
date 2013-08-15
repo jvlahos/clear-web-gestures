@@ -1,7 +1,7 @@
 
 <html>
 <head>
-	<title>Clear for Web</title>
+	<title>Demo - A Gesture Experiment Based on Clear | Jeff Vlahos</title>
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link rel="stylesheet" href="clear.css"/>
@@ -9,11 +9,13 @@
 </head>
 
 <body>
+	<!--Pull to create item-->
 	<div class="item-mod" id="new-item-top">
 		<div class="item">
 				<input disabled="disabled" type="text" value="Pull to Create Task"/>
 		</div>
 	</div>
+	<!--Mod is where all the items go-->
 	<div id="mod" class="mod">
 		<?php
 			$itemsText = array("Welcome!", "Drag me to the right.", "Drag me to the left.", "Tap to edit me.", "Drag down for new item.");
@@ -31,19 +33,21 @@
 				echo '</div></div>';
 			}
 		?>
+		<!--Spacer is used as a DOM marker to know where to move items-->
+		<!--Incomplete items stay above it. Complete items move below it-->
 		<div id="spacer"></div>
 	</div><!--eo mod-->
 
-	<!--Space for triggering new item-->
-	<div id="new-item-trigger">
+	<!--An old space that would be used to trigger a new item at bottom-->
+	<!-- <div id="new-item-trigger">
 		<div class="item-mod hanger">
 			<div class="item">
 				<input type="text" value=""/>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
-	<!--Item template for spawning new item-->
+	<!--Item template cloned for new items-->
 	<div id="item-mod-template">
 		<div class="item-mod new">
 			<div class="item">
@@ -55,7 +59,7 @@
 	<!--Scripts-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="_js/libs/jquery.hammer.min.js"></script>
-	<script src="_js/libs/jquery-ui-1.10.3.custom.min.js"></script>
+	<!--<script src="_js/libs/jquery-ui-1.10.3.custom.min.js"></script>-->
 	<script src="_js/clear.js"></script>
 
 </body>
