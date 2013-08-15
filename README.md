@@ -1,2 +1,2 @@
 # A Gesture Experiment Based on Clear
-### Using Hammer.js and CSS3, I recreated some gestures and transitions from the iOS/OSX application Clear, right in the web browser. Interact with the demo on this page!
+Using Hammer.js and CSS3, I recreated some gestures and transitions from the iOS/OSX application Clear, right in the web browser. Interact with the demo on this page!
