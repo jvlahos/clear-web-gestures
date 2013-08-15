@@ -35,8 +35,8 @@ input:disabled {
 						opacity 0.2s ease-in-out 0s;
 }
 
-.item-mod:hover {
-	cursor: pointer;
+.item-mod:hover, .item:hover, input:hover {
+	cursor: pointer !important;
 }
 
 /*Make item container shrink and hide*/
@@ -82,6 +82,17 @@ input:disabled {
 	font-family: sans-serif;
 	font-size: 20px;
 	font-weight: bold;
+}
+
+.item.bounce-once {
+	-webkit-animation: bounce-once 1s ease-in-out 0.2s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes bounce-once {
+	0%, 20%, 50%, 80%, 100% {-webkit-transform: translateX(0);}
+	40% {-webkit-transform: translateX(67px);}
+	60% {-webkit-transform: translateX(15px);}
 }
 
 .slide-back {
@@ -160,9 +171,9 @@ input:disabled {
 	-webkit-perspective-origin: 50% 0%;
 }
 
-body:not(.focus) #new-item-trigger:hover {
+/*body:not(.focus) #new-item-trigger:hover {
 	cursor: crosshair;
-}
+}*/
 
 body.focus #new-item-trigger:hover {
 	cursor: default;
@@ -182,7 +193,7 @@ body.focus #new-item-trigger:hover {
 	-webkit-transition: none;
 }
 
-#new-item-trigger .hanger .item {
+/*#new-item-trigger .hanger .item {
 	background-color: hsl(30,100%,40%);
 	border-top: 2px solid hsl(30,100%,60%);
 	border-bottom: 1px solid hsl(30,100%,20%);
@@ -194,7 +205,7 @@ body.focus #new-item-trigger:hover {
 
 body.focus #new-item-trigger:hover .hanger {
 	-webkit-transform: rotateX(-90deg);
-}
+}*/
 
 /*Hide the template for items*/
 #item-mod-template {

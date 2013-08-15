@@ -487,6 +487,8 @@ header span {
 @media (max-width: 768px) {
   #intro {
     padding-top: 30px;
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 @media (max-width: 540px) {

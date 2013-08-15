@@ -48,12 +48,17 @@ $(document).ready(function(){
 	setTimeout(function(){
 		wait = false;
 	}, 100);
-	
+
+	setTimeout(function(){
+		$('.item-mod').eq(1).find('.item').addClass('bounce-once');
+	}, 500);
+
+	setTimeout(function(){
+		$('.bounce-once').removeClass('bounce-once');
+	}, 1500);
+
 	// Pull to Create Task - Drag Events
 	$(document).hammer({drag_min_distance: 0}).on('drag', '.mod', function(event){
-			if (event.gesture.deltaY > 67) {
-				event.gesture.deltaY = 67;
-			}
 			if (event.gesture.deltaY > 67 ) {
 				newItemTop.find('input').val('Release to Create Item');
 				$('body').css('margin-top', ((event.gesture.deltaY) - 67)+"px");

@@ -114,6 +114,8 @@ header {
 	}
 	@media (max-width: 768px) {
 		padding-top: 30px;
+		max-width: 500px;
+		margin: 0 auto;
 	}
 	@media (max-width: 540px) {
 		padding: 0; padding-top: 30px;

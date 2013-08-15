@@ -16,8 +16,7 @@
 	</div>
 	<div id="mod" class="mod">
 		<?php
-
-			$itemsText = array("Drag me to the right.", "Drag me to the left.", "Tap to edit me.", "Drag down for new item.", "Tap below for new item.");
+			$itemsText = array("Welcome!", "Drag me to the right.", "Drag me to the left.", "Tap to edit me.", "Drag down for new item.");
 			$items = 5;
 			for ($i=1; $i<=$items; $i++) {
 				$hue = (30 / $items)*$i;
