@@ -1,0 +1,220 @@
+/*Standard reset*/
+* { padding: 0; margin: 0; }
+
+body {
+	background-color: #111;
+	-webkit-perspective: 2000;
+	-webkit-perspective-origin: 50% 0%;
+	/*-webkit-overflow-scrolling: touch;*/
+}
+
+input:disabled {
+	opacity: 1!important;
+}
+
+.mod {
+	background-color: #111;
+	width: 320px;
+	margin: 0 auto;
+}
+
+/*Item container*/
+.item-mod {
+	background-color: #111;
+	background-image: url('_assets/clear.png');
+	background-repeat: no-repeat;
+	position: relative;
+	height: 67px;
+	opacity: 1;
+	overflow-x: hidden;
+	width: 320px;
+	z-index: 1;
+	/*-webkit-overflow-scrolling: touch;*/
+	-webkit-transition: -webkit-transform 0.4s ease-in-out 0s, 
+						height 0.4s ease-in-out 0s,
+						opacity 0.2s ease-in-out 0s;
+}
+
+.item-mod:hover {
+	cursor: pointer;
+}
+
+/*Make item container shrink and hide*/
+.item-mod.shrink {
+	-webkit-animation: shrink-item 0.4s ease-in-out 0s;
+	-webkit-animation-fill-mode: forwards;
+	opacity: 0;
+}
+
+/*Make item container shrink and hide after 0.2 second delay*/
+/*Occurs when item is cleared*/
+.item-mod.shrink-after {
+	-webkit-animation: shrink-item 0.2s ease-in-out 0.2s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+/*Shrink item animation*/
+@-webkit-keyframes shrink-item
+{
+0%   {height:67px;}
+100% {height:0px;}
+}
+
+/*Item contents*/
+.item {
+	background-color: hsl(30,100%,50%);
+	border-top: 2px solid hsl(30,100%,70%);
+	border-bottom: 1px solid hsl(30,100%,30%);
+	padding: 20px;
+	width: 280px;
+	height: 24px;
+	-webkit-transition: background-color 0.4s ease-in-out 0s,
+						border-top 0.4s ease-in-out 0s,
+						border-bottom 0.4s ease-in-out 0s;
+}
+
+/*Input inside the item*/
+.item input {
+	border: none; outline: none;
+	background-color: transparent;
+	color: white;
+	text-shadow: 0px 1px 0px #000000;
+	font-family: sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.slide-back {
+	-webkit-transition: margin 0.2s ease-in-out 0s;
+}
+
+/*Special transition class added when item is cleared*/
+.item-mod.transition .item {
+	-webkit-transition: left 0.2s linear 0s;
+}
+
+/*When item is checked (mid-gesture)*/
+.item-mod.check .item {
+	background-color: #339900 !important;
+	border-top: 2px solid #66CC33 !important;
+	border-bottom: 1px solid #336600 !important;
+}
+
+.item-mod.check .item input {
+	text-decoration: line-through;
+}
+
+/*When item is done*/
+.item-mod.done .item {
+	background-color: #222 !important;
+	border-top: 2px solid #333 !important;
+	border-bottom: 1px solid #111 !important;
+	-webkit-transition: background-color 0.4s linear 0s, border 0.4s linear 0s;
+}
+
+.item-mod.done .item input {
+	text-decoration: line-through;
+}
+
+/*Cloned item is the one that moves (and eventually gets removed)*/
+.item-mod.remove {
+	z-index: 2;
+	position: absolute;
+}
+
+/*Once item is cleared, forgetta bout the check/X icons*/
+.item-mod.gone {
+	background-image: none;
+}
+
+.item.slide-out {
+	-webkit-transition: margin 0.2s ease-in-out 0s !important;
+}
+
+
+/*Makes space when a item is moving around*/
+#spacer.make-space {
+	-webkit-animation: make-space 0.4s ease-in-out 0s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes make-space
+{
+0%   {height:0px;}
+100% {height:67px;}
+}
+
+/*When an item has focus, dim others*/
+.mod.focus .item-mod {
+	opacity: 0.15;
+	background-image: none;
+}
+.mod.focus .item-mod.focus { opacity: 1 }
+
+/*Space below items. Tap triggers new item*/
+#new-item-trigger {
+	height: 150px;
+	width: 320px;
+	margin: 0 auto;
+	-webkit-perspective: 2000;
+	-webkit-perspective-origin: 50% 0%;
+}
+
+body:not(.focus) #new-item-trigger:hover {
+	cursor: crosshair;
+}
+
+body.focus #new-item-trigger:hover {
+	cursor: default;
+}
+
+
+#new-item-trigger .hanger {
+	-webkit-transform-origin: 50% 0%;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: rotateX(-90deg);
+	-webkit-backface-visibility: hidden;
+	z-index: 0;
+	position: relative;
+}
+
+#new-item-trigger .hanger.no-transition {
+	-webkit-transition: none;
+}
+
+#new-item-trigger .hanger .item {
+	background-color: hsl(30,100%,40%);
+	border-top: 2px solid hsl(30,100%,60%);
+	border-bottom: 1px solid hsl(30,100%,20%);
+}
+
+#new-item-trigger:hover .hanger {
+	-webkit-transform: rotateX(-75deg);
+}
+
+body.focus #new-item-trigger:hover .hanger {
+	-webkit-transform: rotateX(-90deg);
+}
+
+/*Hide the template for items*/
+#item-mod-template {
+	display: none;
+}
+
+#new-item-top {
+	width: 320px;
+	margin: 0 auto;
+	height: 0px;
+	-webkit-transform-origin: 50% 100%;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: rotateX(90deg);
+	-webkit-transition: none;
+}
+
+#new-item-top .item {
+	background-color: hsl(0, 100%, 50%);
+}
+
+#new-item-top.animate-back {
+	-webkit-transition: -webkit-transform 0.1s ease-in-out 0s, height 0.1s ease-in-out 0s;
+}

@@ -1,0 +1,875 @@
+/* Bring in all Compass Helpers as well as Tito's base style files */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+img {
+  line-height: 0;
+}
+
+nav ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input, select {
+  vertical-align: middle;
+}
+
+body {
+  font: 13px/1.231 sans-serif;
+  *font-size: small;
+   /*text-rendering: optimizeLegibility;*/
+  /* this causes problems in Chrome for Windows and on iOS */
+}
+
+select, input, textarea, button {
+  font: 99% sans-serif;
+}
+
+pre, code, kbd, samp {
+  font-family: monospace, sans-serif;
+}
+
+body, select, input, textarea {
+  color: #444;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+a:hover, a:active {
+  outline: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+nav ul, nav li {
+  margin: 0;
+}
+
+small {
+  font-size: 85%;
+}
+
+strong, th {
+  font-weight: bold;
+}
+
+td, td img {
+  vertical-align: top;
+}
+
+sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+pre {
+  padding: 15px;
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: pre-line;
+  word-wrap: break-word;
+}
+
+textarea {
+  overflow: auto;
+}
+
+.ie6 legend, .ie7 legend {
+  margin-left: -7px;
+}
+
+input[type="radio"] {
+  vertical-align: text-bottom;
+}
+
+input[type="checkbox"] {
+  vertical-align: bottom;
+}
+
+.ie7 input[type="checkbox"] {
+  vertical-align: baseline;
+}
+
+.ie6 input {
+  vertical-align: text-bottom;
+}
+
+label, input[type=button], input[type=submit], button {
+  cursor: pointer;
+}
+
+button, input, select, textarea {
+  margin: 0;
+}
+
+input:invalid, textarea:invalid {
+  border-radius: 1px;
+  -moz-box-shadow: 0px 0px 5px red;
+  -webkit-box-shadow: 0px 0px 5px red;
+  box-shadow: 0px 0px 5px red;
+}
+
+.no-boxshadow input:invalid,
+.no-boxshadow textarea:invalid {
+  background-color: #f0dddd;
+}
+
+a:link {
+  -webkit-tap-highlight-color: #FF5E99;
+}
+
+button {
+  width: auto;
+  overflow: visible;
+}
+
+.ie7 img {
+  -ms-interpolation-mode: bicubic;
+}
+
+.clearfix:before, .clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+/* !============================================= */
+/* ! Universal						   			  */
+/* !============================================= */
+/* Kill the margin on the last column */
+.ui-block:last-child,
+.ui-block.last {
+  margin-right: 0;
+}
+
+/* !============================================= */
+/* ! Grids							   			  */
+/* !============================================= */
+/* Grid-2 vars */
+/* Grid-3 vars */
+/* Grid-3-rrl vars */
+/* Grid-4 vars */
+/* Grid-5 vars */
+/* ! Columns */
+.ui-block-25 {
+  width: 25%;
+}
+
+.ui-block-50 {
+  width: 50%;
+}
+
+.ui-block-75 {
+  width: 75%;
+}
+
+/* !============================================= */
+/* ! Spacers						   			  */
+/* !============================================= */
+/* Variables & Mixins */
+/* Selectors */
+.spacer {
+  margin-bottom: 50px;
+}
+
+.spacer-small {
+  margin-bottom: 10px;
+}
+
+.spacer-med {
+  margin-bottom: 25px;
+}
+
+.spacer-large {
+  margin-bottom: 75px;
+}
+
+/* !============================================= */
+/* ! Image Blocks						   		  */
+/* !============================================= */
+.imageblock-image {
+  float: left;
+  margin: 0 10px 0 0;
+}
+
+.imageblock-image-right {
+  float: right;
+  margin: 0 0 0 10px;
+}
+
+.imageblock-content {
+  display: table-cell;
+  vertical-align: top;
+  width: 1000em;
+}
+
+.ie6 .imageblock-content,
+.ie7 .imageblock-content {
+  display: block;
+  width: auto;
+  zoom: 1;
+}
+
+/* !== Transitions ==================================== */
+/* !== Sprites ==================================== */
+.sprite-sprite, .sprite-edit-off {
+  background: url('../_img/sprite-s98ed23216c.png') no-repeat;
+}
+
+.sprite-edit-off {
+  background-position: 0 0;
+  height: 1px;
+  width: 1px;
+}
+
+/* !== Paul Irish HTML5 Helpers =================== */
+/* Hide for both screenreaders and browsers
+   css-discuss.incutio.com/wiki/Screenreader_Visibility */
+/* Hide only visually, but have it available for screenreaders 
+   www.webaim.org/techniques/css/invisiblecontent/  &  j.mp/visuallyhidden  */
+/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: drupal.org/node/897638 */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+/* Hide visually and from screenreaders, but maintain layout */
+/* !============================================= */
+/* ! Variables						  			  */
+/* !============================================= */
+/* !-- Universal ------------------------------------ */
+/* !-- Project ------------------------------------ */
+.page-width, #style-hdr .style-hdr-group, .style-body {
+  min-width: 800px;
+  max-width: 1400px;
+}
+
+#style-hdr {
+  background: #222222 url('../_img/bg-leather.png?1328031973') 50% 50% repeat;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0 2px 11px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.35) 0 2px 11px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 2px 11px;
+}
+#style-hdr .style-logo {
+  display: inline;
+  float: right;
+  position: relative;
+  margin-top: 6px;
+  width: 120px;
+}
+#style-hdr .style-hdr-group {
+  margin: 0 5%;
+  *zoom: 1;
+}
+#style-hdr .style-hdr-group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#style-hdr .style-page-h {
+  font: bold 20px/120% "Helvetica Neue", Arial, Helvetica, Verdana, sans-serif;
+  color: #fff;
+  margin: 10px 30px 0 0;
+  letter-spacing: 0;
+  float: left;
+}
+#style-hdr .style-page-h.thin,
+#style-hdr .style-page-h .thin {
+  font-weight: normal;
+}
+#style-hdr .style-tabs {
+  margin-top: 5px;
+  float: left;
+}
+#style-hdr .style-tab {
+  display: inline;
+}
+#style-hdr .style-tab > a {
+  -webkit-transition: color 0.2s ease-in;
+  -moz-transition: color 0.2s ease-in;
+  -ms-transition: color 0.2s ease-in;
+  -o-transition: color 0.2s ease-in;
+  transition: color 0.2s ease-in;
+  color: #999;
+  display: block;
+  float: left;
+  font: normal 12px "Helvetica Neue", Arial, Helvetica, Verdana, sans-serif;
+  padding: 10px 12px 11px;
+  min-width: 70px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+}
+#style-hdr .style-tab > a:hover {
+  color: #fff;
+}
+#style-hdr .style-tab a.active,
+#style-hdr .style-tab a.active :hover {
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+}
+
+/* end style-hdr */
+.style-body {
+  padding: 55px;
+  margin: 80px auto 0;
+}
+
+.style-container {
+  font-family: "Helvetica Neue", Arial, Helvetica, Verdana, sans-serif;
+  margin: 0 0 40px 0;
+}
+
+.style-header {
+  background-color: #333;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 0 16px;
+  padding: 6px;
+  text-shadow: 1px 0 0 #000000;
+}
+
+.style-node {
+  border-top: 1px solid #CCCCCC;
+  margin: 30px 0 0;
+  padding: 30px 0 0;
+  *zoom: 1;
+}
+.style-node:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.style-node .style-node-h {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: #666;
+  margin: -30px 0 30px 0;
+  padding: 6px;
+  background-color: #ededed;
+}
+
+.style-example {
+  float: right;
+  margin: 0 0 0 10px;
+  padding: 10px 0;
+  width: 58%;
+}
+.style-example.full {
+  width: 100%;
+}
+
+.style-meta-container {
+  float: left;
+  padding: 0 2% 0 1%;
+  border-right: 1px solid #ccc;
+  width: 40%;
+}
+
+dl, dt, dd {
+  margin: 0;
+  padding: 0;
+}
+
+.style-color {
+  font: normal 24px/130% Miller, Georgia, Times, Times New Roman, serif;
+}
+
+.style-meta {
+  padding: 10px 0;
+  font-size: 12px;
+}
+
+.style-meta dt {
+  font-weight: bold;
+}
+
+.style-meta dd {
+  margin: 4px 0 12px;
+  padding: 0 0 12px;
+  border-bottom: 1px solid #ccc;
+}
+
+.style-meta dd:last-child {
+  border-bottom: none;
+}
+
+/* Code
+================================== */
+.style-meta .code-snip {
+  display: block;
+  color: #666;
+  background-color: #fff;
+}
+.style-meta .code-snip textarea {
+  width: 100%;
+  min-height: 61px;
+  background-color: transparent;
+  overflow: visible;
+  color: #666;
+  font: normal 12px/130% "Courier New", Courier, mono;
+  border-color: #e5e5e5;
+}
+.style-meta .code-snip pre {
+  display: block;
+  background-color: #333;
+  max-height: 195px;
+  overflow-y: scroll;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  /* string  - pink */
+  /* comment - skyblue */
+  /* type    - lightgreen */
+  /* literal - darkred */
+  /* punctuation */
+  /* html/xml tag    - lightyellow */
+  /* attribute name  - khaki */
+  /* attribute value - pink */
+  /* decimal         - lightgreen */
+  /* plaintext */
+}
+.style-meta .code-snip pre .nocode {
+  background-color: none;
+  color: #000;
+}
+.style-meta .code-snip pre .str {
+  color: #ffa0a0;
+}
+.style-meta .code-snip pre .kwd {
+  color: #f0e68c;
+  font-weight: bold;
+}
+.style-meta .code-snip pre .com {
+  color: #ffa0a0;
+}
+.style-meta .code-snip pre .typ {
+  color: #98fb98;
+}
+.style-meta .code-snip pre .lit {
+  color: #cd5c5c;
+}
+.style-meta .code-snip pre .pun {
+  color: rgba(255, 255, 255, 0.35);
+}
+.style-meta .code-snip pre .tag {
+  color: #f0e68c;
+  font-weight: bold;
+}
+.style-meta .code-snip pre .atn {
+  color: #bdb76b;
+  font-weight: bold;
+}
+.style-meta .code-snip pre .atv {
+  color: #87ceeb;
+}
+.style-meta .code-snip pre .dec {
+  color: #98fb98;
+}
+.style-meta .code-snip pre .pln {
+  color: rgba(255, 255, 255, 0.35);
+}
+.style-meta .code-snip pre .pln:first-child {
+  width: 20px;
+  height: 14px;
+  display: inline-block;
+}
+.style-meta .code-snip li:last-child .pln:first-child {
+  width: 0;
+  margin-top: 4px;
+}
+.style-meta .code-snip .highlight {
+  color: #b32d47;
+}
+
+/* end .style-meta .code-snip */
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #AEAEAE;
+}
+
+/* IE indents via margin-left */
+li.L0 {
+  list-style-type: none;
+}
+
+li.L1 {
+  list-style-type: none;
+}
+
+li.L2 {
+  list-style-type: none;
+}
+
+li.L3 {
+  list-style-type: none;
+}
+
+li.L4 {
+  list-style-type: none;
+}
+
+li.L5 {
+  list-style-type: none;
+}
+
+li.L6 {
+  list-style-type: none;
+}
+
+li.L7 {
+  list-style-type: none;
+}
+
+li.L8 {
+  list-style-type: none;
+}
+
+li.L9 {
+  list-style-type: none;
+}
+
+li.L10 {
+  list-style-type: none;
+}
+
+li.L11 {
+  list-style-type: none;
+}
+
+li.L12 {
+  list-style-type: none;
+}
+
+li.L13 {
+  list-style-type: none;
+}
+
+li.L14 {
+  list-style-type: none;
+}
+
+li.L15 {
+  list-style-type: none;
+}
+
+li.L16 {
+  list-style-type: none;
+}
+
+li.L17 {
+  list-style-type: none;
+}
+
+li.L18 {
+  list-style-type: none;
+}
+
+li.L19 {
+  list-style-type: none;
+}
+
+li.L20 {
+  list-style-type: none;
+}
+
+li.L21 {
+  list-style-type: none;
+}
+
+li.L22 {
+  list-style-type: none;
+}
+
+li.L23 {
+  list-style-type: none;
+}
+
+li.L24 {
+  list-style-type: none;
+}
+
+li.L25 {
+  list-style-type: none;
+}
+
+li.L26 {
+  list-style-type: none;
+}
+
+li.L27 {
+  list-style-type: none;
+}
+
+li.L28 {
+  list-style-type: none;
+}
+
+li.L29 {
+  list-style-type: none;
+}
+
+li.L30 {
+  list-style-type: none;
+}
+
+li.L31 {
+  list-style-type: none;
+}
+
+li.L32 {
+  list-style-type: none;
+}
+
+li.L33 {
+  list-style-type: none;
+}
+
+li.L34 {
+  list-style-type: none;
+}
+
+li.L35 {
+  list-style-type: none;
+}
+
+li.L36 {
+  list-style-type: none;
+}
+
+li.L37 {
+  list-style-type: none;
+}
+
+li.L38 {
+  list-style-type: none;
+}
+
+li.L39 {
+  list-style-type: none;
+}
+
+li.L40 {
+  list-style-type: none;
+}
+
+li.L41 {
+  list-style-type: none;
+}
+
+li.L42 {
+  list-style-type: none;
+}
+
+li.L43 {
+  list-style-type: none;
+}
+
+li.L44 {
+  list-style-type: none;
+}
+
+li.L45 {
+  list-style-type: none;
+}
+
+li.L46 {
+  list-style-type: none;
+}
+
+li.L47 {
+  list-style-type: none;
+}
+
+li.L48 {
+  list-style-type: none;
+}
+
+li.L49 {
+  list-style-type: none;
+}
+
+li.L50 {
+  list-style-type: none;
+}
+
+/* Alternate shading for lines */
+@media print {
+  pre {
+    background-color: none;
+  }
+
+  pre .str, code .str {
+    color: #060;
+  }
+
+  pre .kwd, code .kwd {
+    color: #006;
+    font-weight: bold;
+  }
+
+  pre .com, code .com {
+    color: #600;
+    font-style: italic;
+  }
+
+  pre .typ, code .typ {
+    color: #404;
+    font-weight: bold;
+  }
+
+  pre .lit, code .lit {
+    color: #044;
+  }
+
+  pre .pun, code .pun {
+    color: #440;
+  }
+
+  pre .pln, code .pln {
+    color: #000;
+  }
+
+  pre .tag, code .tag {
+    color: #006;
+    font-weight: bold;
+  }
+
+  pre .atn, code .atn {
+    color: #404;
+  }
+
+  pre .atv, code .atv {
+    color: #060;
+  }
+}

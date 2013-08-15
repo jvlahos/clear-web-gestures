@@ -16,9 +16,11 @@
 	</div>
 	<div id="mod" class="mod">
 		<?php
+
+			$itemsText = array("Drag me to the right.", "Drag me to the left.", "Tap to edit me.", "Drag down for new item.", "Tap below for new item.");
 			$items = 5;
 			for ($i=1; $i<=$items; $i++) {
-				$hue = (45 / $items)*$i;
+				$hue = (30 / $items)*$i;
 				echo '<div class="item-mod">';
 					echo '<div class="item" ';
 					echo 'style="';
@@ -26,7 +28,7 @@
 					echo ' border-top-color: hsl('.$hue.', 100%, 70%);';
 					echo ' border-bottom-color: hsl('.$hue.', 100%, 30%);';
 					echo '">';
-						echo'<input disabled="disabled" type="text" value="Do item #'.$i.'"/>';
+						echo'<input disabled="disabled" type="text" value="'.$itemsText[($i-1)].'"/>';
 				echo '</div></div>';
 			}
 		?>

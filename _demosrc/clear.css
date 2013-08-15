@@ -62,9 +62,9 @@ input:disabled {
 
 /*Item contents*/
 .item {
-	background-color: hsl(45,100%,50%);
-	border-top: 2px solid hsl(45,100%,70%);
-	border-bottom: 1px solid hsl(45,100%,30%);
+	background-color: hsl(30,100%,50%);
+	border-top: 2px solid hsl(30,100%,70%);
+	border-bottom: 1px solid hsl(30,100%,30%);
 	padding: 20px;
 	width: 280px;
 	height: 24px;
@@ -183,9 +183,9 @@ body.focus #new-item-trigger:hover {
 }
 
 #new-item-trigger .hanger .item {
-	background-color: hsl(45,100%,40%);
-	border-top: 2px solid hsl(45,100%,60%);
-	border-bottom: 1px solid hsl(45,100%,20%);
+	background-color: hsl(30,100%,40%);
+	border-top: 2px solid hsl(30,100%,60%);
+	border-bottom: 1px solid hsl(30,100%,20%);
 }
 
 #new-item-trigger:hover .hanger {

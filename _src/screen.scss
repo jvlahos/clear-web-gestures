@@ -173,7 +173,7 @@ footer {
 
 
 #story {
-	display: none;
+	display: block;
 	margin: 75px auto 0 auto;
 	padding-top: 75px;
 	width: 480px;
@@ -181,8 +181,15 @@ footer {
 		width: 90%;
 	}
 	h2 { 
-		margin-bottom: 20px;
-		text-align: center;
+		font-size: 24px;
+	}
+	code {
+		display: inline;
+		background-color: #EEEEEE;
+		border-radius: 4px;
+		font-size: 18px;
+		padding: 2px 5px;
+		white-space: nowrap;
 	}
 }
 

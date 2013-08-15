@@ -1,0 +1,89 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>Clear&rsquo;s Gestures + Motion on the Web | Jeff Vlahos</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
+	
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link rel="stylesheet" href="_css/screen.css">
+
+	<script type="text/javascript" src="//use.typekit.net/rof2tuj.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+</head>
+
+<body>
+
+	<header>
+		<span>A web experiment by <a href="http://www.jeffvlahos.com">Jeff Vlahos</a>, UI/UX designer and front-end developer. Designer at <a href="http://www.upstatement.com">Upstatement</a>.</span>
+	</header>
+
+	<section id="main" role="main">
+		<article id="demo">
+			<iframe src="_demosrc/index.php"></iframe>
+		</article>
+		<article id="intro">
+			<h1>Clear&rsquo;s Gestures + Motion on the Web</h1>
+			<p>I recreated some gestural interactions from the infamous gestural iOS application, Clear. By publishing it, I hope to remind designers and developers that gestural interactions aren&rsquo;t only limited to native apps. Dream bigger, kids.</p>
+			<p id="links">
+				<a href="_demosrc/index.php">View standalone demo &gt;</a>
+				<!-- <a href="#story">Read more about this &gt;</a> -->
+				<a href="https://github.com/jvlahos/clear-web-gestures">Learn, help, and contribute on Github &gt;</a>
+				<a href="http://eightmedia.github.io/hammer.js/">Hammer: a JavaScript gesture library &gt;</a>
+			</p>
+			<div id="share">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.jeffvlahos.com/clear" data-via="jeffvlahos">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				<div class="fb-like" data-href="http://www.jeffvlahos.com/clear" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="arial"></div>
+			</div>
+		</article>
+	</section>
+
+	<footer>
+		<a href="http://www.realmacsoftware.com/clear/">Clear</a> is an application by <a href="http://www.realmacsoftware.com/">RealMacSoftware</a>, available for <a href="http://www.realmacsoftware.com/redirects/clear-mac/appstore">Mac</a> and <a href="http://www.realmacsoftware.com/redirects/clear/appstore">iPhone</a>.
+	</footer>
+
+	<!--
+	<section id="story" name="story">
+		<h2>Gestures &amp; the Web</h2>
+		<p>One thing we all can’t deny is the gestural prowess of native touch applications. Applications like the to-do app <a>Clear</a> offer exceptional, unique gestural experiences, and delightful animations and motion that follow. For the most part, those types of experiences are primarily only seen in native applications. As a designer of web experiences that are increasingly crossing into mobile territory, it’s disheartening to not be thinking about the use of gestures more often.</p>
+
+		<p>In order to try to offset that empty feeling, I set out to see if I could attain some gestural extremes by replicating some of iOS app Clear’s gestures and motion, in the web browser.</p>
+
+		<h2>Faked it ‘til I could make it</h2>
+		<p>My first idea was a hack inspired by the above Forecast.io scroller. Forecast.io’s scroller is a viewport-wide container (320px) holding much wider contents (~1000px+), thus creating a <code>x-overflow</code> region that the user can natively scroll. I was fascinated and curious by its native web simplicity, which led to a question: what if the contents were just a single pixel wider instead of 1000px wider? So I gave it a try.</p>
+
+		<p>The result: with only an indiscernible pixel and <code>-webkit-overflow-scrolling: touch;</code>, the container became a native, gestural object that the user could pull left and right, and it would automatically bounce back. Next, I bound jQuery scroll events to those containers, and triggered CSS animations and transition events based on scroll positions. For example, if the item was released greater than 50px to the right, then I triggered the series of actions to complete that item.</p>
+
+		<p>It was an interesting discovery, and I was fascinated by the native-ness of it. The technique of using a jQuery scroll event quickly became unsustainable though, but it got me attempting to make a gestural experience with just the tools I knew at the time.</p>
+
+		<h2>Utilizing Hammer.js</h2>
+		<p>Transitioning the code I had written based on scroll positions over to a Javascript gesture library was incredibly simple and rewarding. <a>Hammer.js</a> is a plugin that opens up a whole new world of gestural possibilities. I found it to be lightweight, and really simple to use, understand, and experiment with.</p>
+
+		<h2>Conclusion</h2>
+		<p>I’ve tried to accomplish an extreme here, of course. I’ve certainly not attained the fidelity of experience found in the native Clear application, but I hope this entices designers to begin to think more about what kinds of simple gestural experiences and accents that can be introduced to the web now, and increasingly more in the future.</p>
+	</section>
+-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</body>
+</html>
