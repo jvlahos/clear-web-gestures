@@ -291,14 +291,16 @@ $(document).ready(function(){
 		var hue;
 		var items = $('#mod .item-mod').not('.done').not('.check').not('.remove');
 		var itemsCount = items.length;
-		console.log(items);
+		// console.log(items);
 		if (itemsCount < 5) {  itemsCount = 5; }
 		items.each(function( index ){
-			hue = (30/itemsCount) * (index);
+			hue = (30/itemsCount) * (index+1);
+			console.log(hue);
+			console.log($(this).children('.item'));
 			$(this).children('.item')
-				.css('background-color', 'hsl('+hue+',100%, 50%);')
-				.css('border-top-color', 'hsl('+hue+',100%, 70%);')
-				.css('border-bottom-color', 'hsl('+hue+',100%, 30%);');
+				.css('background-color', 'hsl('+hue+',100%, 50%)')
+				.css('border-top-color', 'hsl('+hue+',100%, 70%)')
+				.css('border-bottom-color', 'hsl('+hue+',100%, 30%)');
 		});
 	}
 
