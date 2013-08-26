@@ -132,11 +132,11 @@ p#links {
 
 #share {
 	margin-top: 20px;
-	@include clearfix;
+	@include pie-clearfix;
 	div, iframe {
 		float: left;
 	}
-	iframe {
+	.twitter-share-button {
 		width: 90px !important;
 	}
 }
